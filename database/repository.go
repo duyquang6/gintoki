@@ -21,6 +21,6 @@ func (s *stockRepo) GetStockItem(productID int) (StockItem, error) {
 	tx := NewDB()
 	stock := StockItem{}
 	err := tx.Get(&stock,
-		"SELECT product_id, sku, name, qty_salable FROM tala_warehouse_stock_item WHERE product_id=? LIMIT 1", productID)
+		"SELECT product_id, sku, name, qty_salable FROM stock_item WHERE product_id=? LIMIT 1", productID)
 	return stock, err
 }
