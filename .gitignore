@@ -1,0 +1,7 @@
+.idea
+.vscode
+**/__pycache__
+gintoki
+**/.env
+cmd/server/__debug_bin
+vendor

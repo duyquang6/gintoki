@@ -1,0 +1,36 @@
+syntax = "proto3";
+package proto;
+import "gogo.proto";
+import "meta.proto";
+
+message GetMultiProductInventoryRequest {
+    string api = 1;
+    repeated int32 product_ids = 2 [(gogoproto.customname) = "ProductIDs"];
+}
+
+message GetMultiProductInventoryResponse {
+    Meta meta = 1;
+    repeated GetMultiProductInventoryData data = 2;
+}
+
+message GetMultiProductInventoryData {
+    int64 product_id = 1 [(gogoproto.customname) = "ProductID"];
+    repeated WarehouseInventory data = 2;
+}
+
+message WarehouseInventory {
+    string warehouse_code = 1;
+    int32 qty_salable = 2;
+}
+
+service ProductInventoryService {
+    rpc GetMultiProductInventory (GetMultiProductInventoryRequest) returns (GetMultiProductInventoryResponse) {}
+}
+
+// protoc -I=. -I=$GOPATH/src -I=$GOPATH/src/github.com/gogo/protobuf/protobuf --protoc-gen-gogofast_out=\
+// Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,\
+// Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,\
+// Mgoogle/protobuf/struct.proto=github.com/gogo/protobuf/types,\
+// Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,\
+// Mgoogle/protobuf/wrappers.proto=github.com/gogo/protobuf/types:. \
+// myproto.proto

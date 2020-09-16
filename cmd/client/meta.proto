@@ -1,0 +1,6 @@
+syntax = "proto3";
+package proto;
+message Meta {
+    uint64 code = 1;
+    string message = 2;
+}
