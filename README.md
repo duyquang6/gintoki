@@ -1,7 +1,6 @@
 # Gintoki - a best practice for handling high traffic read only service
 This project practice service which only read database. So how to scale up this to 1m req/min ? 
-By using local caching and kafka to evict local cache explicitly. But it's very hard to deal with inconsistent caching. A multilocking mechanism by key is also a must in this project. It's written by Go and inspired by DDD design.
-And I believe this approach can scale up to 1m req/sec if it behind an L4 proxy  
+By using local caching and kafka to evict local cache explicitly. But it's very hard to deal with inconsistent caching. A multilocking mechanism by key is also a must in this project. It's written by Go and inspired by [DDD](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) and [Hexagonal Architecture design](https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749). I believe this approach can scale up to 1m req/sec if it behind an L4 proxy  
 ## Components
 There is 3 component in Gintoki:
 - A GRPC endpoint which allow callin GRPC traffic, serve high throughput endpoint
